@@ -1,6 +1,6 @@
 import streamlit as st
 from openai import OpenAI
-
+import pandas as pd
 # Show title and description.
 st.title("📄First Project- Document question answering")
 st.write(
@@ -48,6 +48,14 @@ else:
             messages=messages,
             stream=True,
         )
+        #trial
+        df = pd.DataFrame({ 'first column': [1, 2, 3, 4], 'second column': [10, 20, 30, 40] })
+        st.write(df)
+        option = st.selectbox( 'Which number do you like best?', df['first column']) 
+        'You selected: ', option
+        add_selectbox = st.sidebar.selectbox( 'How would you like to be contacted?', ('Email', 'Home phone', 'Mobile phone') )
+        #trial code end
 
         # Stream the response to the app using `st.write_stream`.
         st.write_stream(stream)
+        
